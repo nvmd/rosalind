@@ -11,13 +11,16 @@ instance Show FastaString where
   
 readFasta s = [ FastaString
                 "Rosalind_6404"
-                "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCTCCCACTAATAATTCTGAGG"
+                "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCT\
+                \CCCACTAATAATTCTGAGG"
               , FastaString
                 "Rosalind_5959"
-                "CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCTATATCCATTTGTCAGCAGACACGC" 
+                "CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCTA\
+                \TATCCATTTGTCAGCAGACACGC"
               , FastaString
                 "Rosalind_0808"
-                "CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT"
+                "CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACT\
+                \GGGAACCTGCGGGCAGTAGGTGGAAT"
               ]
            
 fastaId :: FastaString -> String
@@ -35,7 +38,7 @@ gcContent dna = (\(gc, len) -> gc / len * 100)
                   count (gc, len)  _  = (gc,     len + 1)
 
 highestGcContent :: [FastaString] -> (String, Float)
-highestGcContent (x:xs) = foldl compareGcContent                                 
+highestGcContent (x:xs) = foldl compareGcContent
                           (fastaId x, fastaGcContent x)
                           xs
                           where

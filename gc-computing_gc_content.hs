@@ -38,6 +38,7 @@ gcContent dna = (\(gc, len) -> gc / len * 100)
                   count (gc, len)  _  = (gc,     len + 1)
 
 highestGcContent :: [FastaString] -> (String, Float)
+highestGcContent (x:[]) = (fastaId x, fastaGcContent x)
 highestGcContent (x:xs) = foldl compareGcContent
                           (fastaId x, fastaGcContent x)
                           xs
@@ -46,6 +47,7 @@ highestGcContent (x:xs) = foldl compareGcContent
                               then (fastaId e, newContent)
                               else (id, content)
                               where newContent = fastaGcContent e
+highestGcContent []     = ("", 0)
 
 main :: IO ()
 main = do

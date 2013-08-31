@@ -25,7 +25,8 @@ parseFastaEntry = do
 
 parseName = do
   char '>'
-  name <- many1 $ alphaNum <|> char '_'
+  name <- many1 $ alphaNum <|> char '_' -- optional
+  --description <-  -- optional
   return name
 
 parseDna = do
